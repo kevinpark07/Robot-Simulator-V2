@@ -5,39 +5,77 @@ document.addEventListener("DOMContentLoaded", function(){
   // ADD CODE HERE!
   function storeCommands() {
     const movementContainer = document.querySelector('#moves-container')
+    
+    const createList = arrowKey => {
+      const movementLi = document.createElement('li')
+      movementLi.textContent = arrowKey
+      movementContainer.appendChild(movementLi);
+    }
 
     document.addEventListener("keydown", function(e) {
       if(e.key === "ArrowLeft") {
-        const movementLi = document.createElement('li')
-        const direction = "left"
-        movementLi.textContent = direction
-        movementContainer.appendChild(movementLi);
+        createList("left")
+      } else if(e.key === "ArrowRight") {
+        createList("right")
+      } else if(e.key === "ArrowUp") {
+        createList("up")
+      } else if(e.key === "ArrowDown") {
+        createList("down")
       } 
-      if(e.key === "ArrowRight") {
-        const movementLi = document.createElement('li')
-        const direction = "right"
-        movementLi.textContent = direction
-        movementContainer.appendChild(movementLi);
-      } 
-      if(e.key === "ArrowUp") {
-        const movementLi = document.createElement('li')
-        const direction = "up"
-        movementLi.textContent = direction
-        movementContainer.appendChild(movementLi);
-      } 
-      if(e.key === "ArrowDown") {
-        const movementLi = document.createElement('li')
-        const direction = "down"
-        movementLi.textContent = direction
-        movementContainer.appendChild(movementLi);
-      } 
-
-      
-
-      
       
     })
   }
 
+  const moveRobot = () => {
+    const button = document.querySelector('#move-button')
+    
+
+    button.addEventListener('click', (e) => {
+      const ul = document.querySelector('#moves-container')
+      const allLi = ul.childNodes
+      // const first = allLi[0]
+      // console.log(first)
+
+      // const robotMoves = () => {
+      //   for(const li of allLi) {
+      //     // let interval = setInterval(() => {
+      //     move(li.textContent)
+      //     // }, 3000)
+      //     // clearInterval(interval)
+      //     li.remove()
+      //     // console.log(li)
+          
+      //   }
+      //   //clearInterval()
+      // }   
+      // setTimeout(() => {robotMoves(); }, 2000);
+      // // let interval = setInterval(function(){
+      // //   incrementNumber(+1)},1000);
+    
+
+      // robotMoves();
+    
+
+      
+
+      const firstLi = allLi[0]
+      if(firstLi.textContent === "left") {
+        move('left')
+        firstLi.remove()
+      } else if(firstLi.textContent === "right") {
+        move("right")
+        firstLi.remove()
+      } else if(firstLi.textContent === "up") {
+        move("up")
+        firstLi.remove()
+      } else if(firstLi.textContent === "down") {
+        move("down")
+        firstLi.remove()
+      }
+      
+    })
+  }
+
+  moveRobot()
   storeCommands()
 })
