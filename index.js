@@ -43,25 +43,24 @@ document.addEventListener("DOMContentLoaded", function(){
   const moveRobot = () => {
     const button = document.querySelector('#move-button')
     let movementAray = []
-    button.addEventListener('click', (e) => {
-      const ul = document.querySelector('#moves-container')
-      const allLi = ul.childNodes
+    button.addEventListener('click', async (e) => {
+      const allLi = document.querySelectorAll('li')
       // const first = allLi[0]
       // console.log(first)
-
       // const robotMoves = () => {
-        for(const li of allLi) {
-          // let interval = setInterval(() => {
-          movementArray.push(li.textContent);
-          console.log(li)
-          // }, 3000)
-          // clearInterval(interval)
-          //li.remove()
-      //     // console.log(li)
+        console.log(allLi)
+        let timer =500;
+        //for(const li of allLi) {
+          
+        for(let i = 0; i < allLi.length; i++){
+          await sleep(timer);
+          setTimeout(robotMovement(allLi[i].innerText),timer);
+          allLi[i].remove();
           
       }
       //   //clearInterval()
       // }   
+
       // setTimeout(() => {robotMoves(); }, 2000);
       // // let interval = setInterval(function(){
       // //   incrementNumber(+1)},1000);
@@ -88,6 +87,11 @@ document.addEventListener("DOMContentLoaded", function(){
     })
   }
 
+  function sleep(milliseconds){
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+    //robotMovement(li.innerText);
+    //li.remove();
+  }
   moveRobot()
   storeCommands()
 })
